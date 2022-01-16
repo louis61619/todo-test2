@@ -1,0 +1,23 @@
+{
+  "name": "todo-list2-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "dotenv -e ../../.env nodemon index.js",
+    "start:prod": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.13.0"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^4.1.1",
+    "nodemon": "^2.0.15"
+  }
+}

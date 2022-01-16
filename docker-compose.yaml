@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  db:
+    image: mariadb
+    volumes:
+      - db_data:/var/lib/mysql:rw
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc1234
+      MYSQL_DATABASE: todolist
+      MYSQL_PASSWORD: Abc1234
+    ports:
+      - 3307:3306
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      timeout: 20s
+      retries: 10
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: './packages/server'
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - MYSQL_HOST=host.docker.internal
+      - MYSQL_PORT=3307
+      - MYSQL_DATABASE=todolist
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=Abc1234
+      - SERVER_PORT=3001
+    ports:
+      - 3001:3001
+
+  # client:
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: './packages/client'
+  #     args:
+  #       - URI=http://localhost:3001
+  #   ports:
+  #     - 3000:80
+
+volumes:
+  db_data:
