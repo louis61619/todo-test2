@@ -48,7 +48,6 @@ export class App extends PureComponent {
 
   handleModify(index) {
     this.setState({
-      ...this.state,
       isShow: true,
       modifyIndex: index,
     })
@@ -58,7 +57,6 @@ export class App extends PureComponent {
     const result = await deleteTodoItem(item.id)
     if (result?.isSucess) {
       this.setState({
-        ...this.state,
         list: this.state.list.filter((item, index) => index !== removeIndex),
       })
     } else {

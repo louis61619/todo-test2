@@ -71,7 +71,6 @@ export class Dialog extends PureComponent {
                 value={this.state.title}
                 onChange={(e) =>
                   this.setState({
-                    ...this.state,
                     title: e.target.value,
                   })
                 }
@@ -81,7 +80,6 @@ export class Dialog extends PureComponent {
                 value={this.state.description}
                 onChange={(e) =>
                   this.setState({
-                    ...this.state,
                     description: e.target.value,
                   })
                 }
