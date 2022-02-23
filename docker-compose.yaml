@@ -33,14 +33,14 @@ services:
     ports:
       - 3001:3001
 
-  # client:
-  #   build:
-  #     dockerfile: Dockerfile
-  #     context: './packages/client'
-  #     args:
-  #       - URI=http://localhost:3001
-  #   ports:
-  #     - 3000:80
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: './packages/client'
+      args:
+        - URI=http://localhost:3001
+    ports:
+      - 3000:80
 
 volumes:
   db_data:
